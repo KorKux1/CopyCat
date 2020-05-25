@@ -1,27 +1,11 @@
+{% import "./macros.html" as macros %}
+
+
 <section class="cd-gallery">
     <div class="row">
-        {% if linio_products %}
-            {% for product in linio_products %}
-                <div class="mix {{product['shop']}} col-xs-12 col-sm-6 col-md-3">
-                    <div class="thumbnail">
-                        <a href="{{product['url']}}">
-                            <img src="{{product['img']}}" alt="{{product['title']}}">
-                        </a>
-                        <div class="caption">
-                            <a class="product-title" href="{{product['url']}}">
-                                <h4>
-                                    {{product['title']}}
-                                </h4>
-                            </a>
-                        </div>
-                        <div class="info-caption">
-                            <span>COP {{product['price']}}</span>
-                            <a href="{{product['shop_url']}}">{{product['shop']}}</a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+
+        {{macros.render_products(linio_products)}}
+        {{macros.render_products(amazon_products)}}
     </div>
     <div class="cd-fail-message">No results found</div>
 </section> <!-- cd-gallery -->

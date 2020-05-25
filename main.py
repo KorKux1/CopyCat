@@ -7,7 +7,7 @@ from app import create_app
 from app.forms import  SearchForm
 
 # Scrappers
-from app.srappers import LinioSpider, FalabellaSpider, run_spider
+from app.scrapers import LinioSpider, FalabellaSpider, AmazonSpider, run_spider2
 
 app = create_app()
 
@@ -30,12 +30,18 @@ def index():
 
     if search_form.validate_on_submit():
         search = search_form.search.data
-        linio_spider = LinioSpider(search)
-        falabella_spider = FalabellaSpider(search)
 
+        linio_spider = LinioSpider(search)
         linio_products = linio_spider.scrape()
         context['linio_products'] = linio_products
-        print(linio_products)
+
+        amazon_spider = AmazonSpider(search)
+        amazon_products = amazon_spider.scrape()
+        context['amazon_products'] = amazon_products
+
+
+
+
         return render_template('index.html', **context)
 
     return render_template('index.html', **context)

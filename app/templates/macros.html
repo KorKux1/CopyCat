@@ -1,0 +1,35 @@
+{% macro render_products(products) -%}
+        {% if products %}
+            {% for product in products %}
+                <div class="mix {{product['shop']}} col-xs-12 col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                        <a href="{{product['url']}}">
+                            <img src="{{product['img']}}" alt="{{product['title']}}">
+                        </a>
+                        <div class="caption">
+                            <a class="product-title" href="{{product['url']}}">
+                                <h4>
+                                    {% if product['title'] | length < 90 %}
+                                        {{product['title']}}
+                                    {% else %}
+                                        {{product['title'][:90]+"..."}}
+                                    {% endif %}
+                                </h4>
+                            </a>
+                        </div>
+                        <div class="info-caption">
+                            <span>
+                                {% if product['shop'] == 'Amazon' %}
+                                    USD
+                                {% else %}
+                                    COP
+                                {% endif %}           
+                                {{product['price']}}
+                            </span>
+                            <a href="{{product['shop_url']}}">{{product['shop']}}</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+{%- endmacro %}
