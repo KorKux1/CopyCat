@@ -3,3 +3,4 @@ flask-wtf
 scrapy
 requests
 bs4
+pandas

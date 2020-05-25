@@ -817,7 +817,7 @@ a {
 }
 
 .cd-gallery .caption {
-  padding-bottom: 40px;
+  height: 150px;
 }
 
 .cd-gallery .caption a.product-title {
@@ -828,7 +828,7 @@ a {
 .cd-gallery .caption a.product-title h4 {
   font-family: 'Open Sans', sans-serif;
   color: #5f6368;
-  line-height: 25px;
+  line-height: 30px;
   font-size: 25px;
   font-weight: normal;
 }
