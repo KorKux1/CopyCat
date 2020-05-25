@@ -1,3 +1,5 @@
 ﻿flask
-flask-bootstrap
 flask-wtf
+scrapy
+requests
+bs4

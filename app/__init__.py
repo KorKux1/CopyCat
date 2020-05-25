@@ -9,7 +9,8 @@ from .config import  Config
 
 def create_app():
     """
-    This function create the flask apliciation
+    This function create the flask apliciation and add blueprints.
+     
     
     Return: flask app aplication
     """

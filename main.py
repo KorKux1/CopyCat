@@ -12,10 +12,11 @@ app = create_app()
 @app.route('/', methods=['GET','POST'])
 def index():
     """
-    Return Types
+    This function controls the flow of requests to the index 
 
     Returns:
-        [type] -- [description]
+        [redirect] -- [Redirects to page when form is filled correctly]
+        [render_template] -- [It is in charge of rendering the index passing the context parameters]
     """
     search_form = SearchForm()
 
