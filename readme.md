@@ -34,7 +34,7 @@ It's a scraper for products from the Amazon, Linio and Falabella websites.
 
 ## Screenshots
 
-![Index](resources/screen1.jpg)
+![Index](resources/screen1.JPG)
 
 ## Setup (Developer Mode)
 
