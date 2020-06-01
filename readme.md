@@ -59,20 +59,26 @@ Verify
 `pip freeze`
 
 On Linux
-> set environment variables
-> Entry point `export FLASK_APP=main.py`
-> Secret Key `export SECRET_KEY="your key"`
+> set environment variables 
+> Entry point 
+> `export FLASK_APP=main.py` 
+> Secret Key
+> `export SECRET_KEY="your key" `
 
 On Windows
 > set environment variables
-> Entry point `set $env:FLASK_APP='main.py'`
-> Secret Key `set $env:SECRET_KEY="your key"`
+> Entry point
+> `set $env:FLASK_APP='main.py' ` 
+> Secret Key
+> `set $env:SECRET_KEY="your key" ` 
 
 Run server
 `flask run`
 
 For enable debug mode
+
 Windows `set $env:FLASK_DEBUG=1`
+
 Linux `export FLASK_DEBUG=1`
 
 ## Usage
