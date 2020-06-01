@@ -23,6 +23,7 @@ from selenium.common.exceptions import TimeoutException
 from multiprocessing import Process, Queue
 from twisted.internet import reactor
 
+
 class LinioSpider():
     """
     [This class is responsible for scraping the linio website]
@@ -73,34 +74,74 @@ class LinioSpider():
         return df
 
 
-class FalabellaSpider(scrapy.Spider):
-    name = 'falabella_spider'
-    custom_settings = {'FEED_FORMAT': 'json', 'FEED_URI': 'results.json' }
+class FalabellaSpider():
+    """
+    [Responsible for scraping the Falabella website]
+    """
+    def __init__(self, product_searched='Mugs', *args, **kwargs): 
+        """[This constructor initializes the FalabellaScraper class with the useful values in order to obtain the information correctly.]
 
-    def __init__(self, product_searched='Mugs', *args, **kwargs):
-        super(FalabellaSpider, self).__init__(*args, **kwargs)
+        Keyword Arguments:
+            product_searched {str} -- [Product to look for, this comes from the flask form] (default: {'Mugs'})
+        """
+        self.url = f'https://www.falabella.com.co/falabella-co/search?Ntt={product_searched}'
+        self.base_url = 'https://www.falabella.com.co'
 
-        self.allowed_domains = ['falabella.com.co', ]
-        
-        self.start_urls = [
-            f'https://www.falabella.com.co/falabella-co/search?Ntt={product_searched}']
+    def scrape(self):
+        """[It is responsible for initializing the scraping]
 
-    def parse(self, response):
+        Returns:
+            products_list {list} -- [scraped products list]
+        """
         shop = 'Falabella'
-        for product in response.xpath('//div[@class="jsx-2743978790 jsx-3886284353 pod pod-4_GRID"]').getall():
-            sel = scrapy.Selector(text=product)
-            url = sel.xpath('//a[@class="jsx-3185677989  layout_grid-view"]/@href').get()
-            title = sel.xpath('//b[@class="jsx-2743978790 copy2 primary  jsx-2849163555 normal   pod-subTitle"]/text()').get()
-            img = sel.xpath('//img/@src').get()
-            price = sel.xpath('//span[@class="copy1 primary high jsx-2849163555 normal  "]/text()').get()
-            yield {'shop': shop, 'shop_url':response.url, 'url': url, 'title': title, 'img': img, 'price': price}
+        products_list = []
+        try:
+            request = requests.get(self.url)
+            if request.status_code == 200:
+                soup = BeautifulSoup(request.text, 'lxml')
+                products = soup.find_all('div', attrs={'class': 'jsx-2743978790 jsx-3886284353 pod pod-4_GRID'})
+                for product in products:
+                    try:
+                        url = product.a.get('href')
+                        title = product.find('div', {
+                                            'class': 'jsx-2743978790 jsx-3886284353 pod-details pod-details-4_GRID'}).find('a').find('span').find('b').text
+                        img = product.a.img.get('src')
+                        price = product.find(
+                            'a', {'class': 'jsx-2743978790 jsx-3886284353 pod-summary pod-link pod-summary-4_GRID'}).find('span').text
+                        products_list.append({'shop': shop, 'shop_url': request.request.url,
+                                            'url': url, 'title': title, 'img': img, 'price': price})
+                    except Exception as e:
+                        print(f'Error with the data {e}')       
+            else:
+                print(f'Url not response code 200. Error: {request.status_code}')   
+        except Exception as e:
+            print('Error conection with Falabella')
+            print(e)
+        return products_list
+
 
 class AmazonSpider():
-    def __init__(self, product_searched='Mugs', *args, **kwargs):    
+    """
+    [Responsible for scraping the Amazon website using Selenium]
+    """
+
+    def __init__(self, product_searched='Mugs', *args, **kwargs):
+        """[This constructor initializes the AmazonScraper class with the useful values in order to obtain the information correctly.]
+
+        Keyword Arguments:
+            product_searched {str} -- [Product to look for, this comes from the flask form] (default: {'Mugs'})
+        """
         self.url = f'https://www.amazon.com/s?k={product_searched}'
         self.base_url = 'https://www.amazon.com/'
 
     def configure_driver(self):
+        """
+        [Configure the values for the driver]
+
+        Returns:
+            [driver] -- [driver with the settings to work]
+        """
+
         options = webdriver.ChromeOptions()
         options.add_argument('--incognito')
         driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
@@ -124,6 +165,12 @@ class AmazonSpider():
         return df.iterrows()
 
     def scrape(self):
+        """
+        [It is responsible for initializing the scraping]
+
+        Returns:
+            products_list {list} -- [scraped products list]
+        """
         shop = 'Amazon'
         driver = self.configure_driver()
         delay = 5
@@ -152,6 +199,11 @@ def run_spider2(spider):
     
 
 def run_spider(spider):
+    """[Method to run scrapers made with Scrapy]
+
+    Arguments:
+        spider -- [Scraper made with Scrapy]
+    """
     def f(q):
         try:
             runner = scrapy.crawler.CrawlerRunner()

@@ -1,8 +1,6 @@
 ﻿flask
 flask-wtf
-scrapy
 requests
 bs4
-pandas
 selenium
 webdriver-manager

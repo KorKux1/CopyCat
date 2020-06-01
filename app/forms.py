@@ -5,6 +5,9 @@ from wtforms.validators import DataRequired
 
 
 class SearchForm(FlaskForm):
-    search = StringField('', validators=[DataRequired()])
-    # submitButtom = SubmitField()
+    """[Class that represents the product search form]
 
+    Arguments:
+        FlaskForm {[type]} -- [Extends from the FlaskForm class]
+    """
+    search = StringField('', validators=[DataRequired()])

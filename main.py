@@ -7,7 +7,9 @@ from app import create_app
 from app.forms import  SearchForm
 
 # Scrappers
-from app.scrapers import LinioSpider, FalabellaSpider, AmazonSpider, run_spider2
+from app.scrapers import LinioSpider, FalabellaSpider, AmazonSpider, FalabellaSpider, run_spider2
+
+
 
 app = create_app()
 
@@ -39,9 +41,9 @@ def index():
         amazon_products = amazon_spider.scrape()
         context['amazon_products'] = amazon_products
 
-
-
-
+        falabella_spider = FalabellaSpider(search)
+        falabella_products = falabella_spider.scrape()
+        context['falabella_products'] = falabella_products
         return render_template('index.html', **context)
 
     return render_template('index.html', **context)
@@ -49,7 +51,12 @@ def index():
 
 @app.route('/mugs-scrapper')
 def mugs_scrapper():
-   return "Mugs Scrapper"
+    """[summary]
+
+    Returns:
+        [type] -- [description]
+    """
+    return "Mugs Scrapper"
 
 
 if __name__ == '__main__':

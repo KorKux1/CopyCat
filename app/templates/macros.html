@@ -1,7 +1,7 @@
 {% macro render_products(products) -%}
         {% if products %}
             {% for product in products %}
-                <div class="mix {{product['shop']}} col-xs-12 col-sm-6 col-md-3">
+                <div class="mix {{product['shop'].lower()}} col-xs-12 col-sm-6 col-md-3">
                     <div class="thumbnail">
                         <a href="{{product['url']}}">
                             <img src="{{product['img']}}" alt="{{product['title']}}">
