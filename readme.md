@@ -29,7 +29,9 @@ It's a scraper for products from the Amazon, Linio and Falabella websites.
 ## Requirements
 * Languages: 
 <img alt="python" src="https://img.shields.io/badge/python-3.7-green"> 
+
 * Libraries: Flask, Selenium, requests, bs4
+
 * Others: Bootstrap
 
 ## Screenshots
