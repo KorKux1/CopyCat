@@ -5,28 +5,22 @@ It's a scraper for products from the Amazon, Linio and Falabella websites.
 <p align="center">
 
 <a href="https://github.com/KorKux1/CopyCat/pulls">
-<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/>
-</a>
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"/></a>
 
 <a href="https://github.com/KorKux1/CopyCat/blob/master/LICENSE">
-<img alt="GitHub license" src="https://img.shields.io/github/license/KorKux1/CopyCat?label=license"/>
-</a>
+<img alt="GitHub license" src="https://img.shields.io/github/license/KorKux1/CopyCat?label=license"/></a>
 
 <a href="https://github.com/KorKux1/CopyCat/graphs/contributors">
-<img src="https://img.shields.io/github/contributors-anon/korkux1/copycat" alt="GitHub contributors"/>
-</a>
+<img src="https://img.shields.io/github/contributors-anon/korkux1/copycat" alt="GitHub contributors"/></a>
 
 <a href="https://github.com/KorKux1/CopyCat/issues">
-<img alt="GitHub issues" src="https://img.shields.io/github/issues/KorKux1/CopyCat">
-</a>
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/KorKux1/CopyCat"></a>
 
 <a href="https://github.com/KorKux1/CopyCat/network">
-<img alt="GitHub forks" src="https://img.shields.io/github/forks/KorKux1/CopyCat">
-</a>
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/KorKux1/CopyCat"></a>
 
 <a href="https://github.com/KorKux1/CopyCat/stargazers">
-<img alt="GitHub stars" src="https://img.shields.io/github/stars/KorKux1/CopyCat">
-</a>
+<img alt="GitHub stars" src="https://img.shields.io/github/stars/KorKux1/CopyCat"></a>
 
 <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/KorKux1/CopyCat">
 
